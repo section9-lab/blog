@@ -9,12 +9,12 @@ export const zh: NavbarConfig = [
     text: 'oscp 101',
     children: [
       {
-        text: 'VuePress',
+        text: '学习笔记',
         children: [
-          '/zh/reference/cli.md',
-          '/zh/reference/config.md',
-          '/zh/reference/frontmatter.md',
-          '/zh/reference/components.md',
+          '/guide/oscp/0x001.md',
+          '/guide/oscp/config.md',
+          '/guide/oscp/frontmatter.md',
+          '/guide/oscp/components.md',
         ],
       },
     ],
