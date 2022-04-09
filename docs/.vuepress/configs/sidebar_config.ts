@@ -3,10 +3,11 @@ import type { SidebarConfig } from '@vuepress/theme-default'
 export const zh: SidebarConfig = {
   '/guide/': [
     {
-      text: '技术专栏',
+      text: '杂文专栏',
       children: [
         '/guide/README.md',
-        '/guide/BashQuickstartGuide.md',
+        '/guide/BashQuickStart.md',
+        '/guide/GitStandards.md',
       ],
     },
   ],

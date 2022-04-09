@@ -4,7 +4,7 @@ title: Home
 heroImage: 
 actions:
   - text: Get Started
-    link: /guide/BashQuickstartGuide.html
+    link: /guide/README.md
     type: primary
   - text: Introduction
     link: /guide/
@@ -17,5 +17,4 @@ features:
   - title: 框架
     details: 分享一些关于大数据、k8s等相关的框架文章.
 footer: MIT Licensed | Copyright © 2022-present Evan You
-
 ---

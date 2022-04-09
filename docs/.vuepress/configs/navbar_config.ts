@@ -2,7 +2,7 @@ import type { NavbarConfig } from '@vuepress/theme-default'
 
 export const zh: NavbarConfig = [
   {
-    text: '技术专栏',
+    text: '杂文专栏',
     link: '/guide/',
   },
   {
