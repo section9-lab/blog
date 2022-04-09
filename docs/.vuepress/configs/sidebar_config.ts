@@ -5,7 +5,6 @@ export const zh: SidebarConfig = {
     {
       text: '杂文专栏',
       children: [
-        '/guide/README.md',
         '/guide/BashQuickStart.md',
         '/guide/GitStandards.md',
       ],

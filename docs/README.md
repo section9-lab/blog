@@ -4,7 +4,7 @@ title: Home
 heroImage: 
 actions:
   - text: Get Started
-    link: /guide/README.md
+    link: /guide/BashQuickStart.md
     type: primary
   - text: Introduction
     link: /guide/
