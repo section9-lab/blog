@@ -9,12 +9,17 @@ export const zh: NavbarConfig = [
     text: 'oscp 101',
     children: [
       {
-        text: '学习笔记',
+        text: 'web',
         children: [
           '/guide/oscp/0x001.md',
-          '/guide/oscp/config.md',
-          '/guide/oscp/frontmatter.md',
-          '/guide/oscp/components.md',
+          '/guide/oscp/0x002.md',
+        ],
+      },
+      {
+        text: 'linux',
+        children: [
+          '/guide/oscp/0x006.md',
+          '/guide/oscp/0x007.md',
         ],
       },
     ],
@@ -25,15 +30,15 @@ export const zh: NavbarConfig = [
       {
         text: '常用功能',
         children: [
-          '/zh/reference/plugin/back-to-top.md',
-          '/zh/reference/plugin/container.md',
+          '/guide/k8s/back-to-top.md',
+          '/guide/k8s/container.md',
         ],
       },
       {
         text: '内容搜索',
         children: [
-          '/zh/reference/plugin/docsearch.md',
-          '/zh/reference/plugin/search.md',
+          '/guide/k8s/docsearch.md',
+          '/guide/k8s/search.md',
         ],
       },
     ],
