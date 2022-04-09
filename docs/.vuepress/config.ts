@@ -5,7 +5,7 @@ module.exports = {
     // 站点配置
     lang: 'zh-CN',
     title: 'Tachikoma Blog',
-    description: '这是一个 VuePress 站点',
+    description: '这是一个用 VuePress 编写的Blog',
   
     // 主题和它的配置
     theme: '@vuepress/theme-default',
