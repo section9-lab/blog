@@ -3,12 +3,9 @@ home: true
 title: Home
 heroImage: 
 actions:
-  - text: Get Started
+  - text: Start Safari 
     link: /guide/BashQuickStart.md
     type: primary
-  - text: Introduction
-    link: /guide/
-    type: secondary
 features:
   - title: 代码
     details: 分享一些关于如何写出更好更干净的代码.
