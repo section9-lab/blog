@@ -12,7 +12,7 @@ export const zh: SidebarConfig = {
   ],
   '/guide/oscp/': [
     {
-      text: 'web',
+      text: 'linux',
       collapsible: true,
       children: [
         '/guide/oscp/0x001.md',
@@ -20,7 +20,7 @@ export const zh: SidebarConfig = {
       ],
     },
     {
-      text: 'linux',
+      text: 'windows',
       collapsible: true,
       children: [
         '/guide/oscp/0x006.md',

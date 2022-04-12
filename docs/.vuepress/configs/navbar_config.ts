@@ -9,14 +9,18 @@ export const zh: NavbarConfig = [
     text: 'oscp 101',
     children: [
       {
-        text: 'web',
+        text: 'oscp专栏说明',
+        link: '/guide/oscp/README.md',
+      },
+      {
+        text: 'linux',
         children: [
           '/guide/oscp/0x001.md',
           '/guide/oscp/0x002.md',
         ],
       },
       {
-        text: 'linux',
+        text: 'windows',
         children: [
           '/guide/oscp/0x006.md',
           '/guide/oscp/0x007.md',
