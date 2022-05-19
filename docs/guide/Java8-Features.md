@@ -1,10 +1,176 @@
 # [Java8-Features ]
 
 ## 1 Stream
+### 1.1 预定义数据
+```
+@Data
+@AllArgsConstructor
+public class Student {
+    private String id;
+    private String name;
+    private LocalDate birthday;
+    private int age;
+    private double score;
+}
 
-## 2 Lambda
+final List<Student> students = Lists.newArrayList();
+students.add(new Student("1", "张三", LocalDate.of(2009, Month.JANUARY, 1), 12, 12.123));
+students.add(new Student("2", "李四", LocalDate.of(2010, Month.FEBRUARY, 2), 11, 22.123));
+students.add(new Student("3", "王五", LocalDate.of(2011, Month.MARCH, 3), 10, 32.123));
+```
 
-## 3 Optional
+### 1.2 数据统计
+```
+#元素数量：counting
+students.stream().collect(Collectors.counting())
+
+
+#平均值：averagingDouble、averagingInt、averagingLong
+students.stream().collect(Collectors.averagingDouble(Student::getScore))
+
+students.stream().collect(Collectors.averagingInt(s -> (int)s.getScore()))
+students.stream().collect(Collectors.averagingLong(s -> (long)s.getScore()))
+
+students.stream().collect(Collectors.averagingInt(Student::getAge))
+students.stream().collect(Collectors.averagingDouble(Student::getAge))
+students.stream().collect(Collectors.averagingLong(Student::getAge))
+
+
+#和：summingDouble、summingInt、summingLong
+students.stream().collect(Collectors.summingInt(s -> (int)s.getScore()))
+students.stream().collect(Collectors.summingDouble(Student::getScore))
+students.stream().collect(Collectors.summingLong(s -> (long)s.getScore()))
+
+students.stream().collect(Collectors.summingInt(Student::getAge))
+students.stream().collect(Collectors.summingDouble(Student::getAge))
+students.stream().collect(Collectors.summingLong(Student::getAge))
+
+#最大值/最小值元素：maxBy、minBy
+// Optional[Student(id=3, name=王五, birthday=2011-03-03, age=10, score=32.123)]，注意返回类型是Optional
+students.stream().collect(Collectors.minBy(Comparator.comparing(Student::getAge)))
+// Optional[Student(id=1, name=张三, birthday=2009-01-01, age=12, score=12.123)]，注意返回类型是Optional
+students.stream().collect(Collectors.maxBy(Comparator.comparing(Student::getAge)))
+
+#统计结果：summarizingDouble、summarizingInt、summarizingLong
+// IntSummaryStatistics{count=3, sum=66, min=12, average=22.000000, max=32}
+students.stream().collect(Collectors.summarizingInt(s -> (int) s.getScore()))
+// DoubleSummaryStatistics{count=3, sum=66.369000, min=12.123000, average=22.123000, max=32.123000}
+students.stream().collect(Collectors.summarizingDouble(Student::getScore))
+// LongSummaryStatistics{count=3, sum=66, min=12, average=22.000000, max=32}
+students.stream().collect(Collectors.summarizingLong(s -> (long) s.getScore()))
+
+// IntSummaryStatistics{count=3, sum=33, min=10, average=11.000000, max=12}
+students.stream().collect(Collectors.summarizingInt(Student::getAge))
+// DoubleSummaryStatistics{count=3, sum=33.000000, min=10.000000, average=11.000000, max=12.000000}
+students.stream().collect(Collectors.summarizingDouble(Student::getAge))
+// LongSummaryStatistics{count=3, sum=33, min=10, average=11.000000, max=12}
+students.stream().collect(Collectors.summarizingLong(Student::getAge))
+```
+
+### 1.3 聚合、分组
+```
+#聚合元素：toList、toSet、toCollection
+// List: [1, 2, 3]
+final List<String> idList = students.stream().map(Student::getId).collect(Collectors.toList());
+// Set: [1, 2, 3]
+final Set<String> idSet = students.stream().map(Student::getId).collect(Collectors.toSet());
+// TreeSet: [1, 2, 3]
+final Collection<String> idTreeSet = students.stream().map(Student::getId).collect(Collectors.toCollection(TreeSet::new));
+
+#聚合元素：toMap、toConcurrentMap
+// {1=Student(id=1, name=张三, birthday=2009-01-01, age=12, score=12.123), 2=Student(id=2, name=李四, birthday=2010-02-02, age=11, score=22.123), 3=Student(id=3, name=王五, birthday=2011-03-03, age=10, score=32.123)}
+final Map<String, Student> map11 = students.stream()
+    .collect(Collectors.toMap(Student::getId, Function.identity()));
+ 
+ // {1=Student(id=1, name=张三, birthday=2009-01-01, age=12, score=12.123), 2=Student(id=2, name=李四birthday=2010-02-02, age=11, score=22.123), 3=Student(id=3, name=王五, birthday=2011-03-03, age=10, score=32.123)}
+final Map<String, Student> map2 = students.stream()
+    .collect(Collectors.toMap(Student::getId, Function.identity(), (x, y) -> x));
+
+// {1=张三, 2=李四, 3=王五}
+final Map<String, String> map3 = students.stream()
+    .collect(Collectors.toMap(Student::getId, Student::getName, (x, y) -> x));
+
+// {10=Student(id=3, name=王五, birthday=2011-03-03, age=10, score=32.123), 11=Student(id=2, name=李四, birthday=2010-02-02, age=11, score=22.123), 12=Student(id=1, name=张三, birthday=2009-01-01, age=12, score=12.123)}
+final Map<Integer, Student> map5 = students.stream()
+    .collect(Collectors.toMap(Student::getAge, Function.identity(), BinaryOperator.maxBy(Comparator.comparing(Student::getScore))));
+
+
+#分组：groupingBy、groupingByConcurrent
+// List: {10=[Student(id=3, name=王五, birthday=2011-03-03, age=10, score=32.123)], 11=[Student(id=2, name=李四, birthday=2010-02-02, age=11, score=22.123)], 12=[Student(id=1, name=张三, birthday=2009-01-01, age=12, score=12.123)]}
+final Map<Integer, List<Student>> map1 = students.stream().collect(Collectors.groupingBy(Student::getAge));
+// Set: {10=[Student(id=3, name=王五, birthday=2011-03-03, age=10, score=32.123)], 11=[Student(id=2, name=李四, birthday=2010-02-02, age=11, score=22.123)], 12=[Student(id=1, name=张三, birthday=2009-01-01, age=12, score=12.123)]}
+final Map<Integer, Set<Student>> map12 = students.stream().collect(Collectors.groupingBy(Student::getAge, Collectors.toSet()));
+
+// {1=Student(id=1, name=张三, birthday=2009-01-01, age=12, score=12.123), 2=Student(id=2, name=李四, birthday=2010-02-02, age=11, score=22.123), 3=Student(id=3, name=王五, birthday=2011-03-03, age=10, score=32.123)}
+final Map<String, Student> map3 = students.stream()
+    .collect(Collectors.groupingBy(Student::getId, Collectors.collectingAndThen(Collectors.toList(), list -> list.get(0))));
+
+// {1=Student(id=1, name=张三, birthday=2009-01-01, age=12, score=12.123), 2=Student(id=2, name=李四, birthday=2010-02-02, age=11, score=22.123), 3=Student(id=3, name=王五, birthday=2011-03-03, age=10, score=32.123)}
+final Map<String, Student> map2 = students.stream()
+    .collect(Collectors.toMap(Student::getId, Function.identity(), (x, y) -> x));
+
+#分组：partitioningBy
+// List: {false=[Student(id=2, name=李四, birthday=2010-02-02, age=11, score=22.123), Student(id=3, name=王五, birthday=2011-03-03, age=10, score=32.123)], true=[Student(id=1, name=张三, birthday=2009-01-01, age=12, score=12.123)]}
+final Map<Boolean, List<Student>> map6 = students.stream().collect(Collectors.partitioningBy(s -> s.getAge() > 11));
+// Set: {false=[Student(id=3, name=王五, birthday=2011-03-03, age=10, score=32.123), Student(id=2, name=李四, birthday=2010-02-02, age=11, score=22.123)], true=[Student(id=1, name=张三, birthday=2009-01-01, age=12, score=12.123)]}
+final Map<Boolean, Set<Student>> map7 = students.stream().collect(Collectors.partitioningBy(s -> s.getAge() > 11, Collectors.toSet()));
+
+#链接数据：joining
+// javagosql
+Stream.of("java", "go", "sql").collect(Collectors.joining());
+// java, go, sql
+Stream.of("java", "go", "sql").collect(Collectors.joining(", "));
+// 【java, go, sql】
+Stream.of("java", "go", "sql").collect(Collectors.joining(", ", "【", "】"));
+
+#操作链：collectingAndThen
+// {1=Student(id=1, name=张三, birthday=2009-01-01, age=12, score=12.123), 2=Student(id=2, name=李四, birthday=2010-02-02, age=11, score=22.123), 3=Student(id=3, name=王五, birthday=2011-03-03, age=10, score=32.123)}
+final Map<String, Student> map3 = students.stream()
+    .collect(Collectors.groupingBy(Student::getId, Collectors.collectingAndThen(Collectors.toList(), list -> list.get(0))));
+
+// []，结果为空，是因为例子中所有人的年龄都是对的
+students.stream()
+        .collect(
+                Collectors.collectingAndThen(Collectors.toList(), (
+                        list -> list.stream()
+                                .filter(s -> (LocalDate.now().getYear() - s.getBirthday().getYear()) != s.getAge())
+                                .collect(Collectors.toList()))
+                )
+        );
+
+students.stream()
+        .filter(s -> (LocalDate.now().getYear() - s.getBirthday().getYear()) != s.getAge())
+        .collect(Collectors.toList());
+
+#操作后聚合：mapping
+// [张三, 李四, 王五]
+students.stream()
+        .collect(Collectors.mapping(Student::getName, Collectors.toList()));
+
+// [张三, 李四, 王五]
+students.stream()
+        .map(Student::getName)
+        .collect(Collectors.toList());
+
+#聚合后操作：reducing
+// Optional[66.369]，注意返回类型是Optional
+students.stream()
+        .map(Student::getScore)
+        .collect(Collectors.reducing(Double::sum));
+// 66.369
+students.stream()
+        .map(Student::getScore)
+        .collect(Collectors.reducing(0.0, Double::sum));
+// 66.369
+students.stream()
+        .collect(Collectors.reducing(0.0, Student::getScore, Double::sum));
+// Optional[66.369]，注意返回类型是Optional
+students.stream().map(Student::getScore).reduce(Double::sum);
+// 66.369
+students.stream().map(Student::getScore).reduce(0.0, Double::sum);
+```
+
+## 2 Optional
 主要作用是消除 NullPointException
 
 JAVA7
@@ -44,3 +210,7 @@ String result = Optional.ofNullable(getUser())
 ```
 
 ## 4 Time
+
+```
+
+```
