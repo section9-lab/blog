@@ -6,11 +6,10 @@ export const zh: SidebarConfig = {
       text: '杂文专栏',
       children: [
         '/guide/BashQuickStart.md',
-        '/guide/Workflow-Git.md',
-        '/guide/Workflow-Actions.md',
         '/guide/Java8-Features.md',
         '/guide/ClearCode',
         '/guide/ClearProject',
+        '/guide/Workflow-Git.md',
       ],
     },
   ],
