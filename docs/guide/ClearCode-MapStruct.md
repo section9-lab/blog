@@ -1,1 +1,0 @@
-# ClearCode-MapStruct
