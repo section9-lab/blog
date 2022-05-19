@@ -1,4 +1,4 @@
-# GitStandards
+# WorkFlow-Git
 
 ## GitFlow规范
 关于gitflow
