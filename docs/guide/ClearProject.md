@@ -14,6 +14,8 @@
 | 业务实体命名                           | XxxBO                    |
 | 展示层对象命名                         | XxxVO                    |
 
+---
+
 ## 1 Utils
 
 ## 2 Validation

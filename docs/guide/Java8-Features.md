@@ -20,12 +20,13 @@ students.add(new Student("3", "王五", LocalDate.of(2011, Month.MARCH, 3), 10, 
 ```
 
 ### 1.2 数据统计
+#### 1.2.1 元素数量：counting
 ```
-#元素数量：counting
 students.stream().collect(Collectors.counting())
+```
 
-
-#平均值：averagingDouble、averagingInt、averagingLong
+#### 1.2.2 平均值：averagingDouble、averagingInt、averagingLong
+```
 students.stream().collect(Collectors.averagingDouble(Student::getScore))
 
 students.stream().collect(Collectors.averagingInt(s -> (int)s.getScore()))
@@ -34,9 +35,10 @@ students.stream().collect(Collectors.averagingLong(s -> (long)s.getScore()))
 students.stream().collect(Collectors.averagingInt(Student::getAge))
 students.stream().collect(Collectors.averagingDouble(Student::getAge))
 students.stream().collect(Collectors.averagingLong(Student::getAge))
+```
 
-
-#和：summingDouble、summingInt、summingLong
+#### 1.2.3 和：summingDouble、summingInt、summingLong
+```
 students.stream().collect(Collectors.summingInt(s -> (int)s.getScore()))
 students.stream().collect(Collectors.summingDouble(Student::getScore))
 students.stream().collect(Collectors.summingLong(s -> (long)s.getScore()))
@@ -44,14 +46,18 @@ students.stream().collect(Collectors.summingLong(s -> (long)s.getScore()))
 students.stream().collect(Collectors.summingInt(Student::getAge))
 students.stream().collect(Collectors.summingDouble(Student::getAge))
 students.stream().collect(Collectors.summingLong(Student::getAge))
+```
 
-#最大值/最小值元素：maxBy、minBy
+#### 1.2.4 最大值/最小值元素：maxBy、minBy
+```
 // Optional[Student(id=3, name=王五, birthday=2011-03-03, age=10, score=32.123)]，注意返回类型是Optional
 students.stream().collect(Collectors.minBy(Comparator.comparing(Student::getAge)))
 // Optional[Student(id=1, name=张三, birthday=2009-01-01, age=12, score=12.123)]，注意返回类型是Optional
 students.stream().collect(Collectors.maxBy(Comparator.comparing(Student::getAge)))
+```
 
-#统计结果：summarizingDouble、summarizingInt、summarizingLong
+#### 1.2.5 统计结果：summarizingDouble、summarizingInt、summarizingLong
+```
 // IntSummaryStatistics{count=3, sum=66, min=12, average=22.000000, max=32}
 students.stream().collect(Collectors.summarizingInt(s -> (int) s.getScore()))
 // DoubleSummaryStatistics{count=3, sum=66.369000, min=12.123000, average=22.123000, max=32.123000}
@@ -68,16 +74,18 @@ students.stream().collect(Collectors.summarizingLong(Student::getAge))
 ```
 
 ### 1.3 聚合、分组
+#### 1.3.1 聚合元素：toList、toSet、toCollection
 ```
-#聚合元素：toList、toSet、toCollection
 // List: [1, 2, 3]
 final List<String> idList = students.stream().map(Student::getId).collect(Collectors.toList());
 // Set: [1, 2, 3]
 final Set<String> idSet = students.stream().map(Student::getId).collect(Collectors.toSet());
 // TreeSet: [1, 2, 3]
 final Collection<String> idTreeSet = students.stream().map(Student::getId).collect(Collectors.toCollection(TreeSet::new));
+```
 
-#聚合元素：toMap、toConcurrentMap
+#### 1.3.2 聚合元素：toMap、toConcurrentMap
+```
 // {1=Student(id=1, name=张三, birthday=2009-01-01, age=12, score=12.123), 2=Student(id=2, name=李四, birthday=2010-02-02, age=11, score=22.123), 3=Student(id=3, name=王五, birthday=2011-03-03, age=10, score=32.123)}
 final Map<String, Student> map11 = students.stream()
     .collect(Collectors.toMap(Student::getId, Function.identity()));
@@ -93,9 +101,10 @@ final Map<String, String> map3 = students.stream()
 // {10=Student(id=3, name=王五, birthday=2011-03-03, age=10, score=32.123), 11=Student(id=2, name=李四, birthday=2010-02-02, age=11, score=22.123), 12=Student(id=1, name=张三, birthday=2009-01-01, age=12, score=12.123)}
 final Map<Integer, Student> map5 = students.stream()
     .collect(Collectors.toMap(Student::getAge, Function.identity(), BinaryOperator.maxBy(Comparator.comparing(Student::getScore))));
+```
 
-
-#分组：groupingBy、groupingByConcurrent
+#### 1.3.3 分组：groupingBy、groupingByConcurrent
+```
 // List: {10=[Student(id=3, name=王五, birthday=2011-03-03, age=10, score=32.123)], 11=[Student(id=2, name=李四, birthday=2010-02-02, age=11, score=22.123)], 12=[Student(id=1, name=张三, birthday=2009-01-01, age=12, score=12.123)]}
 final Map<Integer, List<Student>> map1 = students.stream().collect(Collectors.groupingBy(Student::getAge));
 // Set: {10=[Student(id=3, name=王五, birthday=2011-03-03, age=10, score=32.123)], 11=[Student(id=2, name=李四, birthday=2010-02-02, age=11, score=22.123)], 12=[Student(id=1, name=张三, birthday=2009-01-01, age=12, score=12.123)]}
@@ -108,22 +117,29 @@ final Map<String, Student> map3 = students.stream()
 // {1=Student(id=1, name=张三, birthday=2009-01-01, age=12, score=12.123), 2=Student(id=2, name=李四, birthday=2010-02-02, age=11, score=22.123), 3=Student(id=3, name=王五, birthday=2011-03-03, age=10, score=32.123)}
 final Map<String, Student> map2 = students.stream()
     .collect(Collectors.toMap(Student::getId, Function.identity(), (x, y) -> x));
+```
 
-#分组：partitioningBy
+
+#### 1.3.4 分组：partitioningBy
+```
 // List: {false=[Student(id=2, name=李四, birthday=2010-02-02, age=11, score=22.123), Student(id=3, name=王五, birthday=2011-03-03, age=10, score=32.123)], true=[Student(id=1, name=张三, birthday=2009-01-01, age=12, score=12.123)]}
 final Map<Boolean, List<Student>> map6 = students.stream().collect(Collectors.partitioningBy(s -> s.getAge() > 11));
 // Set: {false=[Student(id=3, name=王五, birthday=2011-03-03, age=10, score=32.123), Student(id=2, name=李四, birthday=2010-02-02, age=11, score=22.123)], true=[Student(id=1, name=张三, birthday=2009-01-01, age=12, score=12.123)]}
 final Map<Boolean, Set<Student>> map7 = students.stream().collect(Collectors.partitioningBy(s -> s.getAge() > 11, Collectors.toSet()));
+```
 
-#链接数据：joining
+#### 1.3.5 链接数据：joining
+```
 // javagosql
 Stream.of("java", "go", "sql").collect(Collectors.joining());
 // java, go, sql
 Stream.of("java", "go", "sql").collect(Collectors.joining(", "));
 // 【java, go, sql】
 Stream.of("java", "go", "sql").collect(Collectors.joining(", ", "【", "】"));
+```
 
-#操作链：collectingAndThen
+#### 1.3.6 操作链：collectingAndThen
+```
 // {1=Student(id=1, name=张三, birthday=2009-01-01, age=12, score=12.123), 2=Student(id=2, name=李四, birthday=2010-02-02, age=11, score=22.123), 3=Student(id=3, name=王五, birthday=2011-03-03, age=10, score=32.123)}
 final Map<String, Student> map3 = students.stream()
     .collect(Collectors.groupingBy(Student::getId, Collectors.collectingAndThen(Collectors.toList(), list -> list.get(0))));
@@ -137,12 +153,15 @@ students.stream()
                                 .collect(Collectors.toList()))
                 )
         );
-
+//更简洁
 students.stream()
         .filter(s -> (LocalDate.now().getYear() - s.getBirthday().getYear()) != s.getAge())
         .collect(Collectors.toList());
+```
 
-#操作后聚合：mapping
+
+#### 1.3.7 操作后聚合：mapping
+```
 // [张三, 李四, 王五]
 students.stream()
         .collect(Collectors.mapping(Student::getName, Collectors.toList()));
@@ -151,8 +170,10 @@ students.stream()
 students.stream()
         .map(Student::getName)
         .collect(Collectors.toList());
+```
 
-#聚合后操作：reducing
+#### 1.3.8 聚合后操作：reducing
+```
 // Optional[66.369]，注意返回类型是Optional
 students.stream()
         .map(Student::getScore)
@@ -214,3 +235,6 @@ String result = Optional.ofNullable(getUser())
 ```
 
 ```
+
+
+[参考]https://xie.infoq.cn/article/df361a1280773d32208550293
