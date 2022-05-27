@@ -3,7 +3,7 @@ import type { NavbarConfig } from '@vuepress/theme-default'
 export const zh: NavbarConfig = [
   {
     text: '杂文专栏',
-    link: '/guide/BashQuickStart.md',
+    link: '/guide/BashGuideLine.md',
   },
   {
     text: 'oscp 101',
