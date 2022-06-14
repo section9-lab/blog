@@ -1,0 +1,1 @@
+import{o,a as t,b as e,d as a}from"./app.734f9e18.js";import{_ as r}from"./plugin-vue_export-helper.21dcd24c.js";const c={},s={id:"clearcode",tabindex:"-1"},d=e("a",{class:"header-anchor",href:"#clearcode","aria-hidden":"true"},"#",-1),_=a(),n=e("strong",null,"[ClearCode]",-1),i=[d,_,n];function h(l,f){return o(),t("h1",s,i)}var u=r(c,[["render",h]]);export{u as default};

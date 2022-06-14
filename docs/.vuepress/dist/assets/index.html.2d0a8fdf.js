@@ -1,0 +1,1 @@
+const e={key:"v-5d553216",path:"/guide/k8s/",title:"k8s",lang:"zh-CN",frontmatter:{},excerpt:"",headers:[],git:{updatedTime:1649246337e3,contributors:[{name:"Tachikoma",email:"section9lab@gmail.com",commits:1}]},filePathRelative:"guide/k8s/README.md"};export{e as data};

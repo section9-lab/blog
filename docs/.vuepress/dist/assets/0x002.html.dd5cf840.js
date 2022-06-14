@@ -1,0 +1,1 @@
+const t={key:"v-7f2cf941",path:"/guide/oscp/0x002.html",title:"0x002",lang:"zh-CN",frontmatter:{},excerpt:"",headers:[],git:{updatedTime:1649494825e3,contributors:[{name:"Tachikoma",email:"section9lab@gmail.com",commits:1}]},filePathRelative:"guide/oscp/0x002.md"};export{t as data};

@@ -2,7 +2,7 @@
 
 ## 1 GitFlow规范
 
-![GitFlow](../../docs/.vuepress/dist/assets/static/gitflow.png)
+![GitFlow](../../docs/.vuepress/public/gitflow.png)
 
 ### 1.1 Master 分支
 

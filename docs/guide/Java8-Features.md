@@ -2,7 +2,7 @@
 
 ## 1 Stream
 ### 1.1 预定义数据
-```
+```java
 @Data
 @AllArgsConstructor
 public class Student {
@@ -21,12 +21,12 @@ students.add(new Student("3", "王五", LocalDate.of(2011, Month.MARCH, 3), 10, 
 
 ### 1.2 数据统计
 #### 1.2.1 元素数量：counting
-```
+```java
 students.stream().collect(Collectors.counting())
 ```
 
 #### 1.2.2 平均值：averagingDouble、averagingInt、averagingLong
-```
+```java
 students.stream().collect(Collectors.averagingDouble(Student::getScore))
 
 students.stream().collect(Collectors.averagingInt(s -> (int)s.getScore()))
@@ -38,7 +38,7 @@ students.stream().collect(Collectors.averagingLong(Student::getAge))
 ```
 
 #### 1.2.3 和：summingDouble、summingInt、summingLong
-```
+```java
 students.stream().collect(Collectors.summingInt(s -> (int)s.getScore()))
 students.stream().collect(Collectors.summingDouble(Student::getScore))
 students.stream().collect(Collectors.summingLong(s -> (long)s.getScore()))
@@ -49,7 +49,7 @@ students.stream().collect(Collectors.summingLong(Student::getAge))
 ```
 
 #### 1.2.4 最大值/最小值元素：maxBy、minBy
-```
+```java
 // Optional[Student(id=3, name=王五, birthday=2011-03-03, age=10, score=32.123)]，注意返回类型是Optional
 students.stream().collect(Collectors.minBy(Comparator.comparing(Student::getAge)))
 // Optional[Student(id=1, name=张三, birthday=2009-01-01, age=12, score=12.123)]，注意返回类型是Optional
@@ -57,7 +57,7 @@ students.stream().collect(Collectors.maxBy(Comparator.comparing(Student::getAge)
 ```
 
 #### 1.2.5 统计结果：summarizingDouble、summarizingInt、summarizingLong
-```
+```java
 // IntSummaryStatistics{count=3, sum=66, min=12, average=22.000000, max=32}
 students.stream().collect(Collectors.summarizingInt(s -> (int) s.getScore()))
 // DoubleSummaryStatistics{count=3, sum=66.369000, min=12.123000, average=22.123000, max=32.123000}
@@ -75,7 +75,7 @@ students.stream().collect(Collectors.summarizingLong(Student::getAge))
 
 ### 1.3 聚合、分组
 #### 1.3.1 聚合元素：toList、toSet、toCollection
-```
+```java
 // List: [1, 2, 3]
 final List<String> idList = students.stream().map(Student::getId).collect(Collectors.toList());
 // Set: [1, 2, 3]
@@ -85,7 +85,7 @@ final Collection<String> idTreeSet = students.stream().map(Student::getId).colle
 ```
 
 #### 1.3.2 聚合元素：toMap、toConcurrentMap
-```
+```java
 // {1=Student(id=1, name=张三, birthday=2009-01-01, age=12, score=12.123), 2=Student(id=2, name=李四, birthday=2010-02-02, age=11, score=22.123), 3=Student(id=3, name=王五, birthday=2011-03-03, age=10, score=32.123)}
 final Map<String, Student> map11 = students.stream()
     .collect(Collectors.toMap(Student::getId, Function.identity()));
@@ -104,7 +104,7 @@ final Map<Integer, Student> map5 = students.stream()
 ```
 
 #### 1.3.3 分组：groupingBy、groupingByConcurrent
-```
+```java
 // List: {10=[Student(id=3, name=王五, birthday=2011-03-03, age=10, score=32.123)], 11=[Student(id=2, name=李四, birthday=2010-02-02, age=11, score=22.123)], 12=[Student(id=1, name=张三, birthday=2009-01-01, age=12, score=12.123)]}
 final Map<Integer, List<Student>> map1 = students.stream().collect(Collectors.groupingBy(Student::getAge));
 // Set: {10=[Student(id=3, name=王五, birthday=2011-03-03, age=10, score=32.123)], 11=[Student(id=2, name=李四, birthday=2010-02-02, age=11, score=22.123)], 12=[Student(id=1, name=张三, birthday=2009-01-01, age=12, score=12.123)]}
@@ -121,7 +121,7 @@ final Map<String, Student> map2 = students.stream()
 
 
 #### 1.3.4 分组：partitioningBy
-```
+```java
 // List: {false=[Student(id=2, name=李四, birthday=2010-02-02, age=11, score=22.123), Student(id=3, name=王五, birthday=2011-03-03, age=10, score=32.123)], true=[Student(id=1, name=张三, birthday=2009-01-01, age=12, score=12.123)]}
 final Map<Boolean, List<Student>> map6 = students.stream().collect(Collectors.partitioningBy(s -> s.getAge() > 11));
 // Set: {false=[Student(id=3, name=王五, birthday=2011-03-03, age=10, score=32.123), Student(id=2, name=李四, birthday=2010-02-02, age=11, score=22.123)], true=[Student(id=1, name=张三, birthday=2009-01-01, age=12, score=12.123)]}
@@ -129,7 +129,7 @@ final Map<Boolean, Set<Student>> map7 = students.stream().collect(Collectors.par
 ```
 
 #### 1.3.5 链接数据：joining
-```
+```java
 // javagosql
 Stream.of("java", "go", "sql").collect(Collectors.joining());
 // java, go, sql
@@ -139,7 +139,7 @@ Stream.of("java", "go", "sql").collect(Collectors.joining(", ", "【", "】"));
 ```
 
 #### 1.3.6 操作链：collectingAndThen
-```
+```java
 // {1=Student(id=1, name=张三, birthday=2009-01-01, age=12, score=12.123), 2=Student(id=2, name=李四, birthday=2010-02-02, age=11, score=22.123), 3=Student(id=3, name=王五, birthday=2011-03-03, age=10, score=32.123)}
 final Map<String, Student> map3 = students.stream()
     .collect(Collectors.groupingBy(Student::getId, Collectors.collectingAndThen(Collectors.toList(), list -> list.get(0))));
@@ -161,7 +161,7 @@ students.stream()
 
 
 #### 1.3.7 操作后聚合：mapping
-```
+```java
 // [张三, 李四, 王五]
 students.stream()
         .collect(Collectors.mapping(Student::getName, Collectors.toList()));
@@ -173,7 +173,7 @@ students.stream()
 ```
 
 #### 1.3.8 聚合后操作：reducing
-```
+```java
 // Optional[66.369]，注意返回类型是Optional
 students.stream()
         .map(Student::getScore)
@@ -194,21 +194,30 @@ students.stream().map(Student::getScore).reduce(0.0, Double::sum);
 ## 2 Optional
 主要作用是消除 NullPointException
 
-JAVA7
-```
+<CodeGroup>
+  <CodeGroupItem title="JAVA7" active>
+
+```java
 List<String> list = getList();
 List<String> listOpt = list != null ? list : new ArrayList<>();
 ```
 
-JAVA8
-```
+  </CodeGroupItem>
+
+  <CodeGroupItem title="JAVA8">
+
+```java
 List<String> listOpt = Optional.ofNullable(getList())
         .orElse(new ArrayList<>());
 ```
 
+  </CodeGroupItem>
+</CodeGroup>
+
+
 **举例:**
 假设，我们有一个User类，内部有个Address类，在内部有个street属性，我们现在想要获取一个User对象的street值。如果是以前，我们需要各种判断是否是null，代码会写成这样：
-```
+```java
 User user = getUser();
 if (user != null) {
     Address address = user.getAddress();
@@ -223,7 +232,7 @@ return "not specified";
 ```
 
 现在
-```
+```java
 String result = Optional.ofNullable(getUser())
         .map(User::getAddress)
         .map(Address::getStreet)

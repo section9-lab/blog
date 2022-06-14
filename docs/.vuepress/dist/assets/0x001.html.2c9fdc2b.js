@@ -1,0 +1,1 @@
+const e={key:"v-7d7820a2",path:"/guide/oscp/0x001.html",title:"0x001 lame",lang:"zh-CN",frontmatter:{},excerpt:"",headers:[],git:{updatedTime:1649779545e3,contributors:[{name:"Tachikoma",email:"section9lab@gmail.com",commits:2}]},filePathRelative:"guide/oscp/0x001.md"};export{e as data};
