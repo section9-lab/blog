@@ -4,7 +4,7 @@ title: Home
 heroImage: 
 actions:
   - text: Start Safari 
-    link: /guide/BashQuickStart.md
+    link: /guide/BashGuideLine.md
     type: primary
 features:
   - title: 代码
