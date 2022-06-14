@@ -1,6 +1,4 @@
-# [BashGuideLine ]
-
-# ![img](https://www.ruanyifeng.com/blogimg/asset/2017/bg2017111501.png)
+# **[BashGuideLine]**
 
 ## 1 编程风格：
 

@@ -3,7 +3,7 @@ home: true
 title: Home
 heroImage: 
 actions:
-  - text: Start Safari 
+  - text: Start browse the blog site
     link: /guide/BashGuideLine.md
     type: primary
 features:
