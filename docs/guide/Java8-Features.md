@@ -1,5 +1,8 @@
 # **[Java8-Features]**
 
+[[toc]]
+---
+
 ## 1 Stream
 ### 1.1 预定义数据
 ```java
