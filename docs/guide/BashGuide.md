@@ -1,4 +1,4 @@
-# **[BashGuideLine]**
+# **[BashGuide]**
 
 [[toc]]
 ---
@@ -33,7 +33,7 @@
 
 ```bash
 #变量赋值
-my_str="hello world"
+test_str="hello world"
 
 #变量默认值
 ${hostname:="127.0.0.1"}
@@ -44,15 +44,17 @@ ${hostname:="127.0.0.1"}
 
 ```bash
 #!/bin/bash
+
 read -p "请输入你的名字:" name
-echo $name
+echo ${name}
 ```
 
 #### 2.3 for循环
+下面这两种形式
 
 ```bash
-#下面这两种形式
 #!/bin/bash
+
 array=(1 2 3)
 
 for line in ${array};do 
@@ -68,6 +70,7 @@ done
 
 ```bash
 #!/bin/bash
+
 i=1
 while((i<=5)); do
   echo "welcome $i"
