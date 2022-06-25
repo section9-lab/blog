@@ -1,4 +1,4 @@
-# **[Java8-Features]**
+# **[Java8-Feat]**
 
 [[toc]]
 ---

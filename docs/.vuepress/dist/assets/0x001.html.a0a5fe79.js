@@ -1,0 +1,1 @@
+import{o as e,c as a,a as t,d as o}from"./app.0ced1853.js";import{_ as r}from"./plugin-vue_export-helper.21dcd24c.js";const s={},_={id:"_0x001-lame",tabindex:"-1"},c=t("a",{class:"header-anchor",href:"#_0x001-lame","aria-hidden":"true"},"#",-1),n=o(" 0x001 lame"),d=[c,n];function i(h,m){return e(),a("h1",_,d)}var f=r(s,[["render",i]]);export{f as default};

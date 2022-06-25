@@ -5,12 +5,12 @@ export const zh: SidebarConfig = {
     {
       text: '杂文专栏',
       children: [
-        '/guide/BashGuideLine.md',
-        '/guide/Git.md',
-        '/guide/REST-API.md',
-        '/guide/Java8-Features.md',
-        '/guide/ClearCode.md',
-        '/guide/ElegantProject.md',
+        '/guide/BashGuide',
+        '/guide/Git',
+        '/guide/REST-API',
+        '/guide/Java8-Feat',
+        '/guide/ClearCode',
+        '/guide/ElegantProject',
       ],
     },
   ],
@@ -29,42 +29,6 @@ export const zh: SidebarConfig = {
       children: [
         '/guide/oscp/0x006.md',
         '/guide/oscp/0x007.md',
-      ],
-    }
-  ],
-  '/zh/reference/': [
-    {
-      text: 'VuePress 参考',
-      collapsible: true,
-      children: [
-        '/zh/reference/cli.md',
-        '/zh/reference/config.md',
-        '/zh/reference/frontmatter.md',
-        '/zh/reference/components.md',
-        '/zh/reference/plugin-api.md',
-        '/zh/reference/theme-api.md',
-        '/zh/reference/client-api.md',
-        '/zh/reference/node-api.md',
-      ],
-    },
-    {
-      text: '打包工具参考',
-      collapsible: true,
-      children: [
-        '/zh/reference/bundler/vite.md',
-        '/zh/reference/bundler/webpack.md',
-      ],
-    },
-    {
-      text: '默认主题参考',
-      collapsible: true,
-      children: [
-        '/zh/reference/default-theme/config.md',
-        '/zh/reference/default-theme/frontmatter.md',
-        '/zh/reference/default-theme/components.md',
-        '/zh/reference/default-theme/markdown.md',
-        '/zh/reference/default-theme/styles.md',
-        '/zh/reference/default-theme/extending.md',
       ],
     }
   ],

@@ -28,23 +28,4 @@ export const zh: NavbarConfig = [
       },
     ],
   },
-  {
-    text: 'k8s',
-    children: [
-      {
-        text: '常用功能',
-        children: [
-          '/guide/k8s/back-to-top.md',
-          '/guide/k8s/container.md',
-        ],
-      },
-      {
-        text: '内容搜索',
-        children: [
-          '/guide/k8s/docsearch.md',
-          '/guide/k8s/search.md',
-        ],
-      },
-    ],
-  },
 ]
