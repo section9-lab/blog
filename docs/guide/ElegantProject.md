@@ -1,4 +1,4 @@
-# **[ClearProject]**
+# **[ElegantProject]**
 
 [[toc]]
 ---
@@ -19,18 +19,9 @@
 ---
 
 ## 1 Utils
-### 1.1 apache-commons
+### 1.1 hutool
 引入
-```
-<dependency>
-   <groupId>org.apache.commons</groupId>
-    <artifactId>commons-lang3</artifactId>
-    <version>3.12.0</version>
-</dependency>
-```
-### 1.2 hutool
-引入
-```
+```xml
  <dependency>
     <groupId>cn.hutool</groupId>
     <artifactId>hutool-all</artifactId>
@@ -38,9 +29,20 @@
 </dependency>
 ```
 
+### 1.2 apache-commons
+引入
+```xml
+<dependency>
+   <groupId>org.apache.commons</groupId>
+    <artifactId>commons-lang3</artifactId>
+    <version>3.12.0</version>
+</dependency>
+```
+
+
 ## 2 Validation
 引入
-```
+```xml
 <dependency>
     <groupId>javax.validation</groupId>
     <artifactId>validation-api</artifactId>
@@ -60,7 +62,7 @@
 
 ## 3 MapStruct
 引入
-```
+```xml
 <dependency>
     <groupId>org.mapstruct</groupId>
     <artifactId>mapstruct</artifactId>
@@ -75,7 +77,7 @@
 
 ## 4 Lombok
 
-```
+```xml
 <dependency>
     <groupId>org.projectlombok</groupId>
     <artifactId>lombok</artifactId>
