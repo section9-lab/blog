@@ -7,32 +7,26 @@
 
 ![GitFlow](../../docs/.vuepress/public/gitflow.png)
 
-### 1.1 Master 分支
+```text
+### 1 Master 分支
+提供基础分支，其他版本随时从主分支切分出去做版本开发;只能从release和hotfix分支合并过来，研发不可直接commit到主分支。
+版本发布从合并后的主分支上打tag
 
-> 提供基础分支，其他版本随时从主分支切分出去做版本开发;只能从release和hotfix分支合并过来，研发不可直接commit到主分支。
-> 版本发布从合并后的主分支上打tag
+### 2 Develop 分支
+这个分支是开发分支，新增功能时候需要基于开发分支切分出 Feature 或以自己命名的分支，所有的Feature或命名分支都是从这个分支切出去的。
+而 Feature 或命名分支的功能完成后，都会再合并到这个分支上来。
 
-### 1.2 Develop 分支
+### 3 Hotfix 分支
+客户的现场产品版本发生紧急故障时候,会从Master分支开一个Hotfix分支进行修复,Hotfix 修复完成后要再合并到Master和Develop 分支。
+为什么合并回Dev分支？防止Dev合并到Master分支会被覆盖,故障再次出现。
+为什么不在Dev分支修复？Dev还在开发,会有其他未知风险。
 
-> 这个分支是开发分支，新增功能时候需要基于开发分支切分出 Feature 或以自己命名的分支，所有的Feature或命名分支都是从这个分支切出去的。
-> 而 Feature 或命名分支的功能完成后，都会再合并到这个分支上来。
+### 4 Release 分支
+Develop分支成熟后可以合并到 Release 分支。做完最后的测试 Release 分支将会同时合并到 Master 以及 Develop 這两个分支上。
 
-### 1.3 Hotfix 分支
-
-> 客户的现场产品版本发生紧急故障时候,会从Master分支开一个Hotfix分支进行修复,Hotfix 修复完成后要再合并到Master和Develop 分支。
->
-> > 为什么合并回Dev分支？防止Dev合并到Master分支会被覆盖,故障再次出现。
->
-> > 为什么不在Dev分支修复？Dev还在开发,会有其他未知风险。
-
-### 1.4 Release 分支
-
-> Develop分支成熟后可以合并到 Release 分支。做完最后的测试 Release 分支将会同时合并到 Master 以及 Develop 這两个分支上。
-
-### 1.5 Feature||name 分支
-
-> Feature 分支都是从 Develop 分支來的，完成之后会在合并回 Develop 分支。
-
+### 5 Feature||name 分支
+Feature 分支都是从 Develop 分支來的，完成之后会在合并回 Develop 分支。
+```
 ## 2 git commit 规范
 
 ### 2.1 格式
@@ -78,7 +72,7 @@ feat(UserController|UserService): 用户查询接口开发 Close#RM-23412
 feat: 用户查询接口开发 Close#RM-23412
 
 # 4、如果subject无法说明本次提交可以考虑body描述详细信息
-``
+`
 feat: 客户交易金额同步至风控平台
 
 1、调用分控平台API_XXX
@@ -86,7 +80,7 @@ feat: 客户交易金额同步至风控平台
 3、xxx分布一致性
 
 Close#RM-23412
-``
+`
 ```
 
 ## 3 Actions
