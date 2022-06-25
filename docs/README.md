@@ -4,7 +4,7 @@ title: Home
 heroImage: 
 actions:
   - text: Start browse the blog site
-    link: /guide/BashGuideLine.md
+    link: /guide/BashGuide.md
     type: primary
 features:
   - title: 代码
