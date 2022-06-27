@@ -84,8 +84,10 @@ Close#RM-23412
 ```
 
 ## 3 Actions
+https://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html
 
 
 [参考]
 - https://nvie.com/posts/a-successful-git-branching-model/
 - https://github.com/vuejs/core/blob/main/.github/commit-convention.md
+- https://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html
