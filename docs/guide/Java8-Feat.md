@@ -220,6 +220,10 @@ List<String> listOpt = Optional.ofNullable(getList())
 
 **举例:**
 假设，我们有一个User类，内部有个Address类，在内部有个street属性，我们现在想要获取一个User对象的street值。如果是以前，我们需要各种判断是否是null，代码会写成这样：
+
+      
+<CodeGroup>
+  <CodeGroupItem title="JAVA7" active>      
 ```java
 User user = getUser();
 if (user != null) {
@@ -233,15 +237,18 @@ if (user != null) {
 }
 return "not specified";
 ```
+  </CodeGroupItem>
 
-现在
+  <CodeGroupItem title="JAVA8">
+
 ```java
 String result = Optional.ofNullable(getUser())
         .map(User::getAddress)
         .map(Address::getStreet)
         .orElse("not specified");
 ```
-
+  </CodeGroupItem>
+</CodeGroup>
 ## 3 Time
 
 ```
