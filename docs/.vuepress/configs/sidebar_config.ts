@@ -6,7 +6,7 @@ export const zh: SidebarConfig = {
       text: '杂文专栏',
       children: [
         '/guide/BashGuide',
-        '/guide/Git',
+        '/guide/GitGuide',
         '/guide/REST-API',
         '/guide/Java8-Feat',
         '/guide/ClearCode',
