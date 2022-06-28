@@ -223,7 +223,8 @@ List<String> listOpt = Optional.ofNullable(getList())
 
       
 <CodeGroup>
-  <CodeGroupItem title="JAVA7" active>      
+  <CodeGroupItem title="JAVA7" active>    
+      
 ```java
 User user = getUser();
 if (user != null) {
@@ -237,6 +238,7 @@ if (user != null) {
 }
 return "not specified";
 ```
+      
   </CodeGroupItem>
 
   <CodeGroupItem title="JAVA8">
@@ -247,6 +249,7 @@ String result = Optional.ofNullable(getUser())
         .map(Address::getStreet)
         .orElse("not specified");
 ```
+      
   </CodeGroupItem>
 </CodeGroup>
 ## 3 Time
