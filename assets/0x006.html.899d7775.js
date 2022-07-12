@@ -1,0 +1,1 @@
+const t={key:"v-f3ff4886",path:"/guide/oscp/0x006.html",title:"0x006",lang:"zh-CN",frontmatter:{},excerpt:"",headers:[],git:{updatedTime:1649495171e3,contributors:[{name:"Tachikoma",email:"section9lab@gmail.com",commits:2}]},filePathRelative:"guide/oscp/0x006.md"};export{t as data};
